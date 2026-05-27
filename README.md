@@ -8,13 +8,13 @@ A Spring Boot microservices application built as a training project using **Inte
 
 ```
                         ┌─────────────────────┐
-                        │    Eureka Server     │
-                        │  (Service Registry)  │
+                        │    Eureka Server    │
+                        │  (Service Registry) │
                         └──────────┬──────────┘
                                    │  registers / discovers
            ┌───────────────────────┼───────────────────────┐
            │                       │                       │
-  ┌────────▼────────┐   ┌──────────▼──────────┐  ┌────────▼────────┐
+  ┌────────▼────────┐   ┌──────────▼──────────┐  ┌─────────▼───────┐
   │ Employee Service│   │ Attendance Service  │  │ Payslip Service │
   └─────────────────┘   └─────────────────────┘  └─────────────────┘
 ```
