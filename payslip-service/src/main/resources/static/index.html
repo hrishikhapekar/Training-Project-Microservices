@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+        Payslip System
+    </title>
+
+    <style>
+
+        body {
+
+            font-family: Arial;
+
+            background: #f2f2f2;
+
+            text-align: center;
+        }
+
+        .box {
+
+            width: 400px;
+
+            margin: 100px auto;
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 10px;
+        }
+
+        input {
+
+            padding: 10px;
+
+            width: 80%;
+        }
+
+        button {
+
+            margin-top: 10px;
+
+            padding: 10px 20px;
+
+            background: blue;
+
+            color: white;
+
+            border: none;
+        }
+
+        #result {
+
+            margin-top: 20px;
+
+            text-align: left;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>
+        Employee Payslip
+    </h2>
+
+    <input type="number"
+           id="employeeId"
+           placeholder="Enter Employee ID">
+
+    <br><br>
+
+    <button onclick="getPayslip()">
+
+        Generate Payslip
+
+    </button>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+
+    async function getPayslip() {
+
+        const employeeId =
+            document.getElementById(
+                "employeeId"
+            ).value;
+
+        const response =
+            await fetch(
+                `http://localhost:8083/payslip/${employeeId}`
+            );
+
+        const data =
+            await response.json();
+
+        document.getElementById(
+            "result"
+        ).innerHTML = `
+
+            <h3>Payslip Details</h3>
+
+            <p>
+                Employee ID:
+                ${data.employeeId}
+            </p>
+
+            <p>
+                Employee Name:
+                ${data.employeeName}
+            </p>
+
+            <p>
+                Days Present:
+                ${data.daysPresent}
+            </p>
+
+            <p>
+                Monthly Salary:
+                &#8377;${data.monthlySalary}
+            </p>
+        `;
+    }
+
+</script>
+
+</body>
+
+</html>
